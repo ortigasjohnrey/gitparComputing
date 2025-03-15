@@ -9,7 +9,7 @@ public class SearchService {
 
     public List<Entry> fetchSimilarEntries(String partialEntryID) {
         List<Entry> entries = new ArrayList<>();
-        String query = "SELECT * FROM tblentry WHERE EntryID LIKE ? LIMIT 10";
+        String query = "SELECT * FROM tblentry WHERE EntryID LIKE ?";;
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

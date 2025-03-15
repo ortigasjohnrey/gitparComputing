@@ -24,6 +24,7 @@ public class EntrySearchGUI extends JFrame {
     }
 
     private void setupGUI() {
+
         // Full-screen gradient panel
         GradientPanel gradientPanel = new GradientPanel();
         gradientPanel.setLayout(new BorderLayout());
@@ -100,8 +101,15 @@ public class EntrySearchGUI extends JFrame {
     }
 
     private void updateTable(List<Entry> entries) {
-        tableModel.setRowCount(0);
+        tableModel.setRowCount(0); // Clear previous data
         entries.forEach(entry -> tableModel.addRow(entry.toObjectArray()));
+
+        // Adjust row height dynamically
+        resultTable.setPreferredScrollableViewportSize(new Dimension(
+            resultTable.getPreferredSize().width,
+            Math.min(entries.size() * resultTable.getRowHeight(), 600) // max height cap
+        ));
+
         resultTable.revalidate();
         resultTable.repaint();
     }
